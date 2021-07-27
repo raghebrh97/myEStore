@@ -24,24 +24,24 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
           .getProductsDetails()
           .whenComplete(() {
         filteredMap = BlocProvider.of<ProductsCubit>(context).filteredMap;
-        //prodList = BlocProvider.of<ProductsCubit>(context).prodList;
-
         filteredMap.forEach((key, value) {
-        value.forEach((element) {
-          DefaultCacheManager().downloadFile(element.productImages[0] , force: true).then((_){});
+          value.forEach((element) {
+            DefaultCacheManager().downloadFile(
+                element.productImages[0], force: true).then((_) {});
+          });
         });
-        });
-
+        //prodList = BlocProvider.of<ProductsCubit>(context).prodList;
       });
+
     } catch (exception) {
       print(exception.message.toString());
     }
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<ProductsCubit, GeneralStates>(
       builder: (context, state) {
         if (state is LoadingState)

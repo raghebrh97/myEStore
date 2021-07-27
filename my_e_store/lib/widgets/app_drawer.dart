@@ -77,13 +77,19 @@ class MyAppDrawer extends StatelessWidget {
             leading: Icon(Icons.contact_support_outlined),
           ),
           ListTile(
-            onTap: () {
-              Navigator.of(context)
-                  .pushReplacementNamed(MySplashScreen.splashRoute);
-              BlocProvider.of<UsersCubit>(context).signUserOut().then((value) {
-                Navigator.of(context)
-                    .pushReplacementNamed(UserAuthScreen.userAuthRoute);
-              });
+            onTap: ()  {
+              showDialog(context: context, builder: (ctx){
+               return AlertDialog(title: Text('Logout!'), content: Text('Are you sure you want to logout?'), actions: [
+                 TextButton(onPressed: ()=> Navigator.pop(ctx), child: Text('Cancel')) , TextButton(onPressed: (){
+                   Navigator.of(context)
+                       .pushReplacementNamed(MySplashScreen.splashRoute);
+                   BlocProvider.of<UsersCubit>(context).signUserOut().then((value) {
+                     Navigator.of(context)
+                         .pushReplacementNamed(UserAuthScreen.userAuthRoute);
+                   });
+                 }, child: Text('Logout'))
+               ],);
+             }) ;
             },
             title: Text('Logout'),
             leading: Icon(Icons.logout),
