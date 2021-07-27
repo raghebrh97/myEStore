@@ -15,7 +15,7 @@ class ProductsListWidget extends StatefulWidget {
 
 class _ProductsListWidgetState extends State<ProductsListWidget> {
   Map<String, List<Product>> filteredMap;
-  List<Product> prodList = [];
+  //List<Product> prodList = [];
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
           .getProductsDetails()
           .whenComplete(() {
         filteredMap = BlocProvider.of<ProductsCubit>(context).filteredMap;
-        prodList = BlocProvider.of<ProductsCubit>(context).prodList;
+        //prodList = BlocProvider.of<ProductsCubit>(context).prodList;
           filteredMap.forEach((key, value) {
             value.forEach((element) {
               DefaultCacheManager().downloadFile(
