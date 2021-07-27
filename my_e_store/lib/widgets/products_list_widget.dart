@@ -26,11 +26,14 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
         filteredMap = BlocProvider.of<ProductsCubit>(context).filteredMap;
         //prodList = BlocProvider.of<ProductsCubit>(context).prodList;
 
-        filteredMap.forEach((key, value) {
-        value.forEach((element) {
-          DefaultCacheManager().downloadFile(element.productImages[0] , force: true).then((_){});
-        });
-        });
+        if(mounted) {
+          filteredMap.forEach((key, value) {
+            value.forEach((element) {
+              DefaultCacheManager().downloadFile(
+                  element.productImages[0], force: true).then((_) {});
+            });
+          });
+        }
 
       });
     } catch (exception) {
