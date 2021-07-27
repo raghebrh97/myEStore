@@ -48,6 +48,8 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
             child: CircularProgressIndicator(),
           );
         else if (state is LoadedState) {
+          if(filteredMap?.isEmpty ?? true)
+          return Center(child: CircularProgressIndicator(),);
           return Container(
               margin: EdgeInsets.only(left: 10, right: 10, top: 20),
               child: ListView.builder(
